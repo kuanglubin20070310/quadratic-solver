@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>二次方程求解器</title>
+</head>
+<body>
+    <h1>二次方程求解器</h1>
+    <p>本程序用于求解形如：ax² + bx + c = 0 的方程</p>
+    <p>前提假设：a > 0 且判别式（delta）≥ 0</p>
+
+    <script>
+        // 步骤1：使用prompt()从用户获取系数
+        let a = prompt("请输入系数a（a > 0）：");
+        let b = prompt("请输入系数b：");
+        let c = prompt("请输入系数c：");
+
+        // 步骤2：使用parseFloat()转换为数字
+        a = parseFloat(a);
+        b = parseFloat(b);
+        c = parseFloat(c);
+
+        // 输入验证
+        if (isNaN(a) || isNaN(b) || isNaN(c)) {
+            alert("错误：请仅输入有效的数字！");
+            console.log("错误：输入无效 - 输入了非数字值");
+        } else if (a <= 0) {
+            alert("错误：系数a必须大于0！");
+            console.log("错误：输入无效 - a = " + a + "（必须 > 0）");
+        } else {
+            // 步骤3：计算判别式（delta）
+            let delta = b * b - 4 * a * c;
+
+            // 检查delta是否非负（符合前提假设）
+            if (delta < 0) {
+                alert("错误：判别式（delta）= " + delta + " 为负数，不存在实数根。");
+                console.log("错误：判别式为负 - 无实数根");
+            } else {
+                // 步骤4：计算方程的根
+                let x1 = (-b + Math.sqrt(delta)) / (2 * a);
+                let x2 = (-b - Math.sqrt(delta)) / (2 * a);
+
+                // 步骤5：使用alert()显示结果
+                alert("二次方程：" + a + "x² + " + b + "x + " + c + " = 0\n" +
+                      "判别式（delta）：" + delta + "\n\n" +
+                      "根1（x1）：" + x1 + "\n" +
+                      "根2（x2）：" + x2);
+
+                // 步骤6：使用console.log()输出相同结果
+                console.log("=== 二次方程求解器结果 ===");
+                console.log("方程：" + a + "x² + " + b + "x + " + c + " = 0");
+                console.log("系数：a = " + a + "，b = " + b + "，c = " + c);
+                console.log("判别式（delta）：" + delta);
+                console.log("根1（x1）：" + x1);
+                console.log("根2（x2）：" + x2);
+                console.log("==========================");
+            }
+        }
+    </script>
+</body>
+</html>
